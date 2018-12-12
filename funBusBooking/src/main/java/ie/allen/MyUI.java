@@ -50,7 +50,7 @@ public class MyUI extends UI {
 
          //content of cell2
          final TextField nameOfParty = new TextField();
-         nameOfParty.setCaption("Name of Party");
+         nameOfParty.setCaption("Group Name");
       
 
          Slider s = new Slider("How many people are attending to this party?", 1, 300);
@@ -76,7 +76,7 @@ public class MyUI extends UI {
         //to check the database run the layout below
          //layout.addComponent(new Label("Connected to database: " + connection.getCatalog()));
         //query below - as loop:
-        ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM PartyRooms;");
+        ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM FunBuses;");
         // Convert the resultset that comes back into a List - we need a Java class to represent the data 
         List<FunBus> buses = new ArrayList<FunBus>();
         // While there are more records in the resultset
@@ -84,7 +84,7 @@ public class MyUI extends UI {
         {   
             // Add a new Customer instantiated with the fields from the record (that we want, we might not want all the fields, note how I skip the id)
             buses.add(new FunBus(rs.getString("busDestination"), 
-                        rs.getInt("capacity"), 
+                        rs.getInt("Capacity"), 
                         rs.getString("feature"),
                         rs.getString("accessibility")));
     
@@ -95,8 +95,8 @@ public class MyUI extends UI {
              myGrid.setItems(buses);
              myGrid.setSizeFull();
             // Configure the order and the caption of the grid
-             myGrid.addColumn(FunBus::getBusDestination).setCaption("Destination");
-             myGrid.addColumn(FunBus::getCapacity).setCaption("Capacity");
+             myGrid.addColumn(FunBus::getAccessiblity).setCaption("Destination");
+             myGrid.addColumn(FunBus::getCap).setCaption("Capacity");
              myGrid.addColumn(FunBus::getFeature).setCaption("Feature");
              myGrid.addColumn(FunBus::getAccessiblity).setCaption("Accessible");
              myGrid.setSelectionMode(SelectionMode.MULTI);
@@ -115,7 +115,7 @@ public class MyUI extends UI {
         bookButton.addClickListener(e -> {
 
             String compare = select.getValue().stream().map(FunBus::getAccessiblity).collect(Collectors.joining(","));
-            int cap = select.getValue().stream().mapToInt(FunBus::getCapacity).sum();
+            int cap = select.getValue().stream().mapToInt(FunBus::getCap).sum();
             message.setValue(String.valueOf(cap));
             String match = "true";
 

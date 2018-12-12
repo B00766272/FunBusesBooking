@@ -3,14 +3,14 @@ package ie.allen;
 class FunBus
 {
     private String busDestination;
-    private double capacity;
+    private int cap;
 	private String feature;
 	private String accessiblity;
 
-    FunBus(String busDestination,int capacity,String feature, String accessiblity)
+    FunBus(String busDestination,int cap,String feature, String accessiblity)
     {
         this.busDestination = busDestination;
-        this.capacity = capacity;
+        this.cap = cap;
 		this.feature = feature;
         this.accessiblity = accessiblity;
      
@@ -24,12 +24,12 @@ class FunBus
 		this.busDestination = busDestination;
 	}
 	
-	public double getCapacity() {
-		return capacity;
+	public int getCap()  {
+		return cap;
 	}
 	
-	public void setCapacity(Double capacity) {
-		this.capacity = capacity;
+	public void setCap(int cap) {
+		this.cap = cap;
 	}
 	
 	public String getAccessiblity() {
